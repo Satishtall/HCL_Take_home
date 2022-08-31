@@ -1,0 +1,34 @@
+#include<stdio.h>
+int main() 
+{
+int n,i,min_len,curr_len,curr_seg,rod_len=0;
+int a[5];
+printf("Enter the no of segments and min_len in rod\n");
+scanf("%d%d",&n,&min_len);
+for(i=0;i<n;i++) {
+    printf("enter the %d index in the rod\n",i);
+    scanf("%d",&a[i]);
+}
+for(i=0;i<n;i++){
+    rod_len=rod_len+a[i];
+}
+printf("rod_len is %d \n",rod_len);
+curr_seg = 1;
+curr_len = rod_len;
+for (i=0;i<n-1;i++) {
+     curr_seg+=1;
+	 curr_len+=curr_len-a[n-i-1];
+	 if ((curr_len >=min_len) || curr_seg ==n) {
+	     printf("proper cutt\n");
+	 }else {
+	     printf("not enough len to cut\n");
+		 break;
+	 }
+}
+   if (curr_seg == n) {
+        printf("POSSIBLE");
+   }else {
+        printf("IMPOSSIBLE");
+   }
+   return 0;
+}
